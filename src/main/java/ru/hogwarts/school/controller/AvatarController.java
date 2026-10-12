@@ -1,7 +1,7 @@
 package ru.hogwarts.school.controller;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +50,7 @@ public class AvatarController {
     }
 
     @GetMapping
-    public Page<Avatar> getAll(Pageable pageable) {
-        return avatarService.getAll(pageable);
+    public Page<Avatar> getAll(@RequestParam int page, @RequestParam int size) {
+        return avatarService.getAll(PageRequest.of(page, size));
     }
 }
